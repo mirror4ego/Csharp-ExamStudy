@@ -1,0 +1,67 @@
+##C* 코딩 컨벤션
+
+1. Bracing 스타일
+	- 블럭안에 하나의 문장만 있어도 무조건 Brace를 붙인다.
+	- 브레이스는 따로 줄을 만든다
+	- 예외적으로 get/set 속성 정의의 경우 브레이스를 한줄로 처리한다.
+	- Switch문에는 한문장만 있을 경우 생략 가능하며, 여러문장이 있다면 되도록 묶으면 읽기 편리하다 
+2. 탭과 들여쓰기
+	- 탭은 4개의 문자로 설정, 코드상 탭은 항상 공백문자로 치환
+3. 띄어쓰기
+	- 메서드 파라미터 사이에 공백 한칸 넣기
+	- 비교 연산자 전후에 공백
+4. 네임 케이싱
+	- 클래스명, 메서드명, 속성명, 이벤트명은 Pascal Case를 사용한다.
+	- 상수가 아닌 필드명은 Camel Case를 사용한다.
+	- 메서드 파라미터는 Camel Case를 사용한다.
+	- 로컬 변수명은 Camel Case를 사용한다.
+	- public 상수(public const)와 public 읽기전용 정적 변수(public static readonly)는 Pascal Case를 사용한다.
+	- Enum Value 즉 Enum element는 Pascal Case를 사용한다.
+	- 복합어의 경우 맨 앞의 문자만 대문자 또는 소문자로 변경된다.
+5. 네이밍 컨벤션
+	- Hungarian notation 사용 하지 않음. 변수명 앞에 자료형을 나타내는 1~2문자를 사용하지 않는다.
+	- 멤버 필드에 대해 접두어를 붙이지 않는다 (개발팀에 따라서는 권장하는 경우 있음)
+	- 클래스 멤버들은 앞에 this.를 붙여서 명시적으로 표현하는 것이 좋음 (개발팀에 따라서는 붙이지 않는 것을 권장하는 경우 있음)
+	- 인터페이스명은 항상 I로 시작한다.
+	- 제네릭 파라미터 타입은 T와 같이 한문자 선택
+	- boolean 형의 변수/필드는 가능하면 is, has, can 등의 접두어를 붙여서 의미가 명료하게 한다.
+	- 클래스명, enum명, 대리자(delegate)명에는 어떤 Prefix도 붙이지 않는다.
+	- 클래스명, 메서드명, 속성명 등의 명칭에 축약된 단어를 사용하지 않는다.
+	- 꼭 필요하거나 널리 알려진 용어는 축약형을 사용할 수 있다. 예를 들어, UserInterface를 UI 로 축약하거나 Online Analytical Processing 을 Olap으로 축약할 수 있다.
+	- 축약형을 사용할 경우에는 2자까지는 모두 대문자로, 2자 초과인 경우는 Pascal Casing이나 Camel Casing을 사용한다.
+	- 메서드는 행위를 나타내므로 동사(verb)를 사용한다.
+	- 필드나 속성 혹은 로컬변수는 명사(noun)를 사용한다.
+	- 이벤트는 가능하면 동사형으로 표현한다.
+	- 로컬변수는 가능하면 의미있는 단어를 선택한다.
+6. 접미어
+	- C#에서 Type을 정의할 때 불필요한 접미어 (혹은 접두어)를 붙이지 않는다. 즉, 구조체명에 중복되게 Struct를 붙이거나 enum 타입에 뒤에 Enum, Flags 등을 붙이지 않는다. 
+	- 다음과 같은 파생클래스 타입명에는 접미어(suffix)를 붙여 준다. 이는 클래스의 기능을 이해하는데 도움을 주기 때문이다.
+		- System.Exception 으로부터 파생된 타입에는 끝에 Exception을 붙인다.
+		- System.Collections.ICollection 으로부터 파생된 타입에는 끝에 Collection을 붙인다.
+		- System.EventArgs 으로부터 파생된 타입에는 끝에 EventArgs를 붙인다.
+		- System.Delegate 로부터 파생된 타입에는 끝에 EventHandler를 붙인다.
+		- System.Attribute 으로부터 파생된 타입에는 끝에 Attribute를 붙인다.
+7. Unmannaged
+	- Unmannaged Code : 클래스들은 별도의 어셈블리에 두는 것을 권장
+	- SafeNativeMethods : Security 문제가 없는 Native API 함수들은 SafeNativeMethods 클래스 안에 둔다.
+	- NativeMethods : Security 문제가 있을 수 있는 Native API 함수들로서 UnmanagedCode 권한을 실행 시마다 체크하도록 할 경우, 그 API들은 NativeMethods 클래스 안에 둔다. 이 NativeMethods 클래스는 SuppressUnmanagedCodeSecurity 을 지정하지 않는다. 
+	- UnsafeNativeMethods : Security 문제가 발생할 가능성이 있지만 UnmanagedCode 권한을 런타임시 체크하지 않는 API들은 UnsafeNativeMethods 클래스 안에 둔다.
+8. 코딩 스타일
+	- C#에서 데이타 타입은 built-in 타입(예: int) 혹은 CLR 타입(예: Int32)을 사용할 수 있다. C# 코드에서는 이 중 C#에 built-in 되어 있는 데이타 타입을 사용할 것을 권장한다.
+	- 접근제한자 : C# 클래스의 멤버(필드, 속성, 메서드 등)들에 대해 항상 접근제한자(Access Modifier)를 명시한다. 일반적으로 접근제한자를 각 멤버 정의의 첫부분에 일괄적으로 표시하는 것이 좋다.
+	- if 조건
+		- if 조건문에서 bool 변수가 있다면, 이를 다시 true/false와 비교하지 않는다.
+		- if 조건문 안에서 할당(assignment)을 하지 않는다. 이는 코드 가독성을 떨어뜨린다.
+	- Attribute는 별도의 라인에 지정한다. 만약 복수개의 Attribute가 있는 경우는 한 라인에 하나씩 지정한다. 
+	- 문자열 안에 백슬래쉬 같은 Escaped String이 있는 경우, C#의 @ 을 사용한다. 
+	- 문자열 병합(concatenation)을 위해서는 + 연산자를 사용하지 말고, StringBuilder나 String.Format()을 사용한다.
+	- Exception을 rethrow 하기 위해서는 원래의 exception 스택을 보존하기 위해 throw; 를 사용한다. 
+	- IDisposable을 사용하는 클래스 객체는 C#의 using 블럭을 사용하여 자동으로 Dispose() 메서드가 호출되게 한다. using 은 블럭 내에서 Exception이 발생하더라도 항상 Dispose()를 호출하게 된다. 
+9. 소스파일
+	- 하나의 소스 파일은 가능한 한 하나의 Type (클래스, 인터페이스, enum 등)을 갖게 한다. 만약 Nested Type이 있다면, 이는 해당 파일에 포함될 수 있다.
+	- 소스파일은 가능한 한 그 파일에 정의된 Type의 이름과 동일하게 한다. 
+10. 코멘트
+	- 코멘트는 개발자의 의도, 알고리즘의 개요, 혹은 루틴의 로직을 설명하는데 사용해야 한다. 일반적으로 원저자 이외의 개발자가 코멘트만을 읽어서 그 클래스/메서드의 동작을 이해할 수 있다면, 그것은 이상적인 코멘트이다. 메서드 이름을 단순히 반복하는 코멘트는 아무 의미가 없다.
+	- 어느 정도 길이의 메서드에 대해 코멘트를 달아야 하는지에 대한 특별한 기준은 없다. 단, 너무 작은 메서드의 경우 그리고 그 의미를 타 개발자가 금새 알 수 있는 메서드의 경우 굳이 코멘트를 달 필요는 없다. 
+	- 메서드나 타 멤버 안에서 코멘트를 정의할 때는 두 개의 슬래쉬 ( // )를 사용한다. 그리고, 되도록이면 코멘트를 해당 코드 라인 뒷에 붙이지 말고, 바로 윗 라인에 별도의 라인을 할당하여 적는다. 단, 필드 선언문과 같이 간단한 코드는 뒤에 여백히 허락하면 뒤에 코멘트를 적을 수 있다.
+	-경우에 따라 특별한 마크를 코멘트에 표현할 수 있다. 이는 차후 특별한 이슈를 코드에서 신속히 검색하기 위한 것으로 개발팀마다 특별한 태그를 정하여 코멘트에 표현할 수 있다. 
